@@ -23,7 +23,7 @@ commands:
             date +%s > /tmp/be/build_start
 
             # get all buildevenst binaries so jobs in any OS will work
-            curl -q -L -o /tmp/be/bin-linux/buildevents https://github.com/honeycombio/buildevents/releases/download/v0.3.0/buildevents-linux-amd64
+            curl -q -L -o /tmp/be/bin-linux/buildevents https://86-186895545-gh.circle-artifacts.com/0/go/src/github.com/honeycombio/buildevents/artifacts/buildevents-linux-amd64
             curl -q -L -o /tmp/be/bin-darwin/buildevents https://github.com/honeycombio/buildevents/releases/download/v0.3.0/buildevents-darwin-amd64
 
             # make them executable
@@ -69,9 +69,9 @@ commands:
             elif uname -a | grep Darwin > /dev/null 2>&1; then
               export PATH=$PATH:/tmp/buildevents/be/bin-darwin:/tmp/be/bin-darwin
             fi
-            # set the timeout
+            # set the timeout but don't fail the job if this fails
             export BUILDEVENT_TIMEOUT=<< parameters.timeout >>
-            buildevents watch $CIRCLE_WORKFLOW_ID
+            buildevents watch $CIRCLE_WORKFLOW_ID || true
 
   with_job_span:
     parameters:

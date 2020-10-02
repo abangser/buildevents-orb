@@ -14,7 +14,7 @@ commands:
       internal buildevents orb command.  don't use this.
     steps:
       - save_cache:
-          key: buildevents-v0.4.8
+          key: buildevents-dev-toshok-1
           paths:
             - /tmp/be
   restore_be_cache:
@@ -22,7 +22,7 @@ commands:
       internal buildevents orb command.  don't use this.
     steps:
       - restore_cache:
-          key: buildevents-v0.4.8
+          key: buildevents-dev-toshok-1
 
   start_trace:
     description: |
